@@ -1,0 +1,28 @@
+# Install and setup virtualenv
+python -m pip install --upgrade pip setuptools virtualenv
+mkdir folder_name
+cd folder_name
+python -m virtualenv .
+source bin/activate
+
+# Within the virtualenv install the necessary libraries
+python -m pip install "kivy[base]"
+pip install plyer
+
+# Install and setup buildozer
+pip3 install --upgrade buildozer
+sudo apt update
+sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+pip3 install --upgrade Cython==0.29.33
+
+# Initial a buildozer job
+buildozer init
+Edit the buildozer.spec and set the title, package.name, package.domain, requirements, orientation, android.permissions and source.include_patterns = images/*.png
+
+# Create the package and send to a plugged-in device
+buildozer android debug deploy run
+Read and accept Eula
+
+# Image attribution:
+By Travis Avery - https://thenounproject.com/travisavery/collection/audio-video-solid/?i=2283501, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=93960344
+By GithHub, MIT, https://commons.wikimedia.org/w/index.php?curid=33440652
