@@ -2,8 +2,8 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.config import Config
 from kivy.clock import Clock
-from datetime import timedelta
 from kivy.core.window import Window
+from datetime import timedelta
 from plyer import vibrator
 
 class TimerWindow(Widget):
@@ -12,19 +12,13 @@ class TimerWindow(Widget):
 
         self.zeroCountString = "0:00:00.000"
         self.timerLabel.text = self.zeroCountString
-#        self.screenSize.text = str(Window.size)
 
-        # Create a timer to update the stopwatch
+        # Create a timer to update the stopwatch and display
         timer = Clock.schedule_interval(self.increaseTimer, 0.001)
-
-        # Create a timer to update the display
         guiUpdateTimer = Clock.schedule_interval(self.updateWindow, 0.1)
 
         self.startCount = False
         self.msCount = 0
-    
-#        Window.bind(on_resize=self.on_window_resize)
-
 
     def increaseTimer(self,dt):
         if self.startCount:
@@ -56,11 +50,6 @@ class TimerWindow(Widget):
             delta = timedelta(milliseconds=self.msCount)
             self.timerLabel.text = str(delta)[0:-3]
 
-#    def on_window_resize(self,window,width,height):
-#        print(width)
-#        print(height)
-#        self.screenSize.text = f"({width},{height})"
-
 class TimerApp(App):
     def on_resize(self):
         print (Window.size)
@@ -68,5 +57,4 @@ class TimerApp(App):
         return TimerWindow()
 
 if __name__ == '__main__':
-    Config.set('graphics', 'resizable', True)
     TimerApp().run()
