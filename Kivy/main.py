@@ -51,8 +51,6 @@ class TimerWindow(Widget):
             self.timerLabel.text = str(delta)[0:-3]
 
 class TimerApp(App):
-    def on_resize(self):
-        print (Window.size)
     def build(self):
         return TimerWindow()
 
